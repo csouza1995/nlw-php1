@@ -19,10 +19,10 @@ class ProjectFactory extends Factory
     {
         return [
             'title' => fake()->words(4, true),
-            'description' => htmlspecialchars(fake()->randomHtml()),
+            'description' => fake()->randomHtml(),
             'ends_at' => fake()->dateTimeBetween('now', '+3 days'),
             'status' => fake()->randomElement(['open', 'closed']),
-            'tech_stack' => fake()->randomElements(['PHP', 'JavaScript', 'Python', 'Ruby', 'Go', 'Java', 'C#'], random_int(1, 3)),
+            'tech_stack' => fake()->randomElements(['nodejs', 'react', 'javascript', 'vite', 'nextjs'], random_int(1, 3)),
             'created_by' => User::factory(),
         ];
     }
