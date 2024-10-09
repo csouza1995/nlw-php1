@@ -1,1 +1,1 @@
-    <x-project-card :project="$project" />
+    <x-projects.card :project="$project" />
