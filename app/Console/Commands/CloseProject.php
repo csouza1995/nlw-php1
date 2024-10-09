@@ -2,6 +2,8 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Project;
+use App\ProjectStatus;
 use Illuminate\Console\Command;
 
 class CloseProject extends Command
@@ -25,6 +27,10 @@ class CloseProject extends Command
      */
     public function handle()
     {
-        //
+        Project::query()
+            ->where('ends_at', '<', now())
+            ->update([
+                'status' => ProjectStatus::Closed
+            ]);
     }
 }
