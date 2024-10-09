@@ -13,5 +13,7 @@ class Proposal extends Model
     protected $fillable = [
         'email',
         'hours',
+        'position',
+        'position_status',
     ];
 }

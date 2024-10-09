@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Actions\ArrangeProposalsPositions;
 use App\Models\Project;
 use App\Models\Proposal;
 use App\Models\User;
@@ -27,6 +28,8 @@ class DatabaseSeeder extends Seeder
                 Proposal::factory(random_int(1, 15))->create([
                     'project_id' => $project->id,
                 ]);
+
+                ArrangeProposalsPositions::run($project->id);
             });
     }
 }
