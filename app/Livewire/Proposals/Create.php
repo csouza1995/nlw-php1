@@ -5,6 +5,8 @@ namespace App\Livewire\Proposals;
 use App\Actions\ArrangeProposalsPositions;
 use App\Models\Project;
 use App\Models\Proposal;
+use App\Notifications\DownPosition;
+use App\Notifications\NewProposal;
 use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Modelable;
 use Livewire\Component;
@@ -58,6 +60,8 @@ class Create extends Component
             $this->refreshPositions($proposal);
 
             $this->dispatch('proposal::created');
+
+            $this->project->author->notify(new NewProposal($this->project));
         });
 
         $this->modal = false;
@@ -81,9 +85,11 @@ class Create extends Component
 
         if ($otherProposals) {
             $proposal->update(['position_status' => 'up']);
-            Proposal::query()
-                ->where('id', $otherProposals->id)
-                ->update(['position_status' => 'down']);
+
+            $proposalDown = Proposal::find($otherProposals->id);
+            $proposalDown->update(['position_status' => 'down']);
+
+            $proposal->notify(new DownPosition($proposal->project));
         }
 
         ArrangeProposalsPositions::run($proposal->project_id);
