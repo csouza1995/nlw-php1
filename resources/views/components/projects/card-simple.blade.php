@@ -16,7 +16,7 @@
                 </div>
 
                 {{-- I dont like it --}}
-                <livewire:projects.timer :$project />
+                <livewire:projects.timer :$project :static="true" />
             </div>
         </div>
     </div>

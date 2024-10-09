@@ -11,6 +11,8 @@ class Timer extends Component
 {
     public Project $project;
 
+    public bool $static = false;
+
     public stdClass $timer;
 
     public function setTimer()
