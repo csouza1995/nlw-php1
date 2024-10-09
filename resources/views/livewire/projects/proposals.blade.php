@@ -1,1 +1,1 @@
-<x-proposals :proposals="$project->ordered_proposals" />
+<x-proposals :proposals="$this->proposals" />
