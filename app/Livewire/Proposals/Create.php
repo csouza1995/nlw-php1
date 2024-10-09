@@ -52,7 +52,7 @@ class Create extends Component
 
         $this->modal = false;
 
-        $this->redirect(route('projects.show', $this->project));
+        $this->dispatch('proposal::created');
     }
 
     public function render()
