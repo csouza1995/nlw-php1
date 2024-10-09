@@ -29,4 +29,11 @@ class Project extends Model
     {
         return $this->hasMany(Proposal::class);
     }
+
+    public function getOrderedProposalsAttribute()
+    {
+        return $this->proposals()
+            ->orderByRaw('DATE(created_at) DESC')
+            ->get();
+    }
 }

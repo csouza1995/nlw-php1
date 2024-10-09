@@ -15,9 +15,8 @@
         </div>
         <div>
             <button
-                class="bg-[#5354FD] text-white font-bold tracking-wide uppercase px-8 py-3 rounded-[4px]
-                    hover:bg-[#1f20a6] transition duration-300 ease-in-out"
-                @click="$refs.modal.showModal(); showModal= true">
+                class="bg-[#5354FD] text-white font-bold tracking-wide uppercase px-8 py-3 rounded-[4px] hover:bg-[#1f20a6] transition duration-300 ease-in-out"
+                wire:click="$set('modal', true)">
                 Enviar uma proposta
             </button>
             <div class="flex items-center justify-between mt-4 text-[14px]">
@@ -40,7 +39,7 @@
         <div class="uppercase font-bold text-[#8C8C9A] text-[12px]">Tecnologias</div>
         <div class="flex gap-[8px] items-center pb-2">
             @foreach ($project->tech_stack as $tech)
-                <x-ui.tech :icon="$tech" :text="$tech"/>
+                <x-ui.tech :icon="$tech" :text="$tech" />
             @endforeach
         </div>
     </div>
